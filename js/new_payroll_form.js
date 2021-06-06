@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded",(event)=>{
           textError.textContent = e;
         } 
       });
-    }); 
+    
 
 const salary = document.querySelector('#salary');
 const output = document.querySelector('.salary-output');
@@ -22,3 +22,13 @@ salary.addEventListener('input', function() {
     output.textContent = salary.value;
 });
 
+let day = document.getElementById("day");
+let month = document.getElementById("month");
+let year = document.getElementById("year");
+let dateError = document.querySelector(".date-error");    
+day.addEventListener('click',checkDate);
+month.addEventListener('click',checkDate);
+year.addEventListener('click',checkDate);
+dateError.textContent="Date is invalid";
+
+});

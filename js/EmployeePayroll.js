@@ -46,11 +46,14 @@ class EmployeePayrollData{
         return this._startDate;
     }
     set startDate(startDate){
-        if(startDate.getMonth()<=(new Date()).getMonth()
-           &&startDate.getDay()<=(new Date()).getDay()
-           &&startDate.getFullYear()<=(new Date()).getFullYear())
+        if(startDate.getTime()<=(new Date()).getTime()
+        &&((((new Date()).getTime())-(startDate.getTime()))/(1000*60*60*24))<=30 ){
             this._startDate = startDate;
-        else throw "Date is incorrect: "+startDate.toLocaleDateString("en-IN");
+           }
+        else{
+            alert("Incorrect date");
+            throw "Date is incorrect: "+startDate.toLocaleDateString("en-IN");
+        }
     }
 
     //toString
