@@ -27,9 +27,22 @@ salary.addEventListener('input', function() {
 const save = () => {
   try {
       let employeePayrollData = createEmployeePayroll();
+      createAndUpdateStorage(employeePayrollData);
   } catch (e) {
       return;
   }
+}
+function createAndUpdateStorage(employeePayrollData){
+  let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+  if(employeePayrollList!=undefined){
+      employeePayrollList.push(employeePayrollData);
+  }
+  else{
+      employeePayrollList = [employeePayrollData];
+  }
+  alert(employeePayrollList.toString());
+  localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
 }
 
 const createEmployeePayroll = () => {
@@ -51,7 +64,6 @@ const createEmployeePayroll = () => {
       getInputValueById("#month") +
       "-" +
       getInputValueById("#year");
-  employeePayrollData.startDate = Date.parse(date);
   alert(employeePayrollData.toString());
   return employeePayrollData;
 }
@@ -71,6 +83,14 @@ const getSelectedValues = (propertyValue) => {
 */
 const getInputValueById = (id) => {
   let value = document.querySelector(id).value;
+  return value;
+}
+/**
+* getElementById is better supported than qurySelector method in older versions of the browsers.
+* It will allow to select element by only it's id.
+*/
+const getInputElementValue = (id) => {
+  let value = document.getElementById(id).value;
   return value;
 }
 
