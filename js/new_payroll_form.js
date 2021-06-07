@@ -93,5 +93,33 @@ const getInputElementValue = (id) => {
   let value = document.getElementById(id).value;
   return value;
 }
+const resetForm = () => {
+  document.querySelector("#name").value = "";
+  unsetSelectedValues("[name=profile]");
+  unsetSelectedValues("[name=gender]");
+  unsetSelectedValues("[name=department]");
+  document.querySelector(".salary-output").textContent=400000;
+  document.querySelector("#day").value = 01;
+  document.querySelector("#month").value = 01;
+  document.querySelector("#year").value = 2020;
+  document.querySelector("#notes").value= "";
+  document.querySelector(".date-error").textContent = "";
+}
+
+const unsetSelectedValues = (propertyValue) => {
+  let allItems = document.querySelectorAll(propertyValue);
+  allItems.forEach(item=>{
+      item.checked = false;
+  });
+}
+const setTextValue = (id, value) => {
+  const element = document.querySelector(id);
+  element.textContent = value;
+}
+const setValue = (id, value) => {
+  const element = document.querySelector(id);
+  element.value = value;
+}
+
 
 
