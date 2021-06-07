@@ -52,15 +52,9 @@ class EmployeePayrollData{
         return this._startDate;
     }
     set startDate(startDate){
-        if(startDate.getTime()<=(new Date()).getTime()
-        &&((((new Date()).getTime())-(startDate.getTime()))/(1000*60*60*24))<=30 ){
-            this._startDate = startDate;
-           }
-        else{
-            alert("Incorrect date");
-            throw "Date is incorrect: "+startDate.toLocaleDateString("en-IN");
-        }
+         this._startDate = startDate;
     }
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const empDate = !this._startDate ? 'undefined' : this._startDate.toLocaleDateString('en-US', options);
