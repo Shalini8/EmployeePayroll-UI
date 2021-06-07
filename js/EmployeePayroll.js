@@ -52,18 +52,19 @@ class EmployeePayrollData{
         return this._startDate;
     }
     set startDate(startDate){
-        if(startDate.getTime()<=(new Date()).getTime()
-        &&((((new Date()).getTime())-(startDate.getTime()))/(1000*60*60*24))<=30 ){
+        //  if(startDate.getTime()<=(new Date()).getTime()
+        //  &&((((new Date()).getTime())-(startDate.getTime()))/(1000*60*60*24))<=30 ){
             this._startDate = startDate;
-           }
-        else{
-            alert("Incorrect date");
-            throw "Date is incorrect: "+startDate.toLocaleDateString("en-IN");
-        }
+           // }
+        //  else{
+        //      alert("Incorrect date");
+        //      throw "Date is incorrect: "+startDate.toLocaleDateString("en-IN");
+        // }
     }
+    
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const empDate = !this._startDate ? 'undefined' : this._startDate.toLocaleDateString('en-US', options);
+        const empDate = !this._startDate ? "undefined" : this._startDate.toLocaleDateString("en-US", options);
         return "id=" + this.id +  ", name=" + this._name + ", gender="
             + this._gender + ", profilePic=" + this._profilePic
             + ", departments=" + this._department + ", salary="
