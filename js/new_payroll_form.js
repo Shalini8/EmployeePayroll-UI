@@ -21,6 +21,7 @@ output.textContent = salary.value;
 salary.addEventListener('input', function() {
     output.textContent = salary.value;
 });
+    checkForUpdate();
 });
 
 
@@ -122,6 +123,43 @@ const setValue = (id, value) => {
   const element = document.querySelector(id);
   element.value = value;
 }
+const checkForUpdate = () =>{
+  const employeePayrollJSON = localStorage.getItem('editEmp');
+  isUpdate = employeePayrollJSON ? true :false;
+  if(!isUpdate) return;
+  employeePayrollObj = JSON.parse(employeePayrollJSON);
+  setForm();
+}
+const setForm = () =>{
+  document.querySelector('#name').value = employeePayrollObj._name;
+  setSelectedValues('[name=profile]',employeePayrollObj._profilePic);
+  setSelectedValues('[name=gender]',employeePayrollObj._gender);
+  setSelectedValues('[name=department]',employeePayrollObj._department);
+  document.querySelector("#salary").value = employeePayrollObj._salary;
+  document.querySelector(".salary-output").textContent = employeePayrollObj._salary;
+  document.querySelector('#notes').value = employeePayrollObj._notes;
+  let date = stringifyDate(employeePayrollObj._startDate).split("/");
+  document.querySelector('#day').value = date[0];
+  document.querySelector('#month').value = date[1];
+  document.querySelector('#year').value = date[2];
+}
+const stringifyDate = (date)=> {
+  const options = {day: 'numeric', month: 'String', year:'numeric'};
+  const newDate = !date ? "undefined":new Date(Date.parse(date)).toLocaleDateString('en-IN',options);
+  return newDate;
+}
 
+const setSelectedValues = (propertyValue,value) =>{
+  let allItems = document.querySelectorAll(propertyValue);
+  allItems.forEach(item => {
+      if(Array.isArray(value)){
+          if(value.includes(item.value)){
+              item.checked = true;
+          }
+      }
+      else if(item.value == value)
+          item.checked = true;
+  });
+}
 
 
